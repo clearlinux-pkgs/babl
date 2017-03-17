@@ -4,7 +4,7 @@
 #
 Name     : babl
 Version  : 0.1.24
-Release  : 1
+Release  : 2
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.24.tar.bz2
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.24.tar.bz2
 Summary  : Dynamic, any to any, pixel format conversion library
@@ -51,8 +51,12 @@ lib components for the babl package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1488405316
-%configure --disable-static
+export SOURCE_DATE_EPOCH=1489764996
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-semantic-interposition "
+%configure --disable-static --enable-sse4_1
 make V=1  %{?_smp_mflags}
 
 %check
@@ -63,7 +67,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1488405316
+export SOURCE_DATE_EPOCH=1489764996
 rm -rf %{buildroot}
 %make_install
 
