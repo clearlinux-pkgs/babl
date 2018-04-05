@@ -4,7 +4,7 @@
 #
 Name     : babl
 Version  : 0.1.42
-Release  : 15
+Release  : 16
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.42.tar.bz2
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.42.tar.bz2
 Summary  : Dynamic, any to any, pixel format conversion library
@@ -59,7 +59,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517677841
+export SOURCE_DATE_EPOCH=1522962505
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -70,6 +70,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffast-math -ffat-lto-object
 %configure --disable-static --enable-sse4_1
 make  %{?_smp_mflags}
 
+unset PKG_CONFIG_PATH
 pushd ../buildavx2/
 export CFLAGS="$CFLAGS -m64 -march=haswell"
 export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
@@ -85,7 +86,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1517677841
+export SOURCE_DATE_EPOCH=1522962505
 rm -rf %{buildroot}
 pushd ../buildavx2/
 %make_install
@@ -94,7 +95,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/haswell/pkgconfig/babl.pc
 
 %files dev
 %defattr(-,root,root,-)
@@ -140,9 +140,7 @@ popd
 /usr/lib64/haswell/babl-0.1/HSL.so
 /usr/lib64/haswell/babl-0.1/HSV.so
 /usr/lib64/haswell/babl-0.1/cairo.so
-/usr/lib64/haswell/babl-0.1/fast-float.so
 /usr/lib64/haswell/babl-0.1/float-half.so
-/usr/lib64/haswell/babl-0.1/float.so
 /usr/lib64/haswell/babl-0.1/gegl-fixups.so
 /usr/lib64/haswell/babl-0.1/gggl-lies.so
 /usr/lib64/haswell/babl-0.1/gggl-table-lies.so
@@ -152,12 +150,10 @@ popd
 /usr/lib64/haswell/babl-0.1/grey.so
 /usr/lib64/haswell/babl-0.1/naive-CMYK.so
 /usr/lib64/haswell/babl-0.1/simple.so
-/usr/lib64/haswell/babl-0.1/sse-half.so
 /usr/lib64/haswell/babl-0.1/sse2-float.so
 /usr/lib64/haswell/babl-0.1/sse2-int16.so
 /usr/lib64/haswell/babl-0.1/sse2-int8.so
 /usr/lib64/haswell/babl-0.1/sse4-int8.so
-/usr/lib64/haswell/babl-0.1/two-table.so
 /usr/lib64/haswell/babl-0.1/ycbcr.so
 /usr/lib64/haswell/libbabl-0.1.so.0
 /usr/lib64/haswell/libbabl-0.1.so.0.141.1
