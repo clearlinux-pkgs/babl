@@ -1,5 +1,6 @@
 libbabl-0.1.so.0:_babl_file_get_contents
 libbabl-0.1.so.0:_babl_fish_create_name
+libbabl-0.1.so.0:_babl_fish_missing_fast_path_warning
 libbabl-0.1.so.0:_babl_fish_path_destroy
 libbabl-0.1.so.0:_babl_fish_prepare_bpp
 libbabl-0.1.so.0:_babl_fish_rig_dispatch
@@ -8,6 +9,7 @@ libbabl-0.1.so.0:_babl_legal_error
 libbabl-0.1.so.0:_babl_max_path_len
 libbabl-0.1.so.0:_conversion_new
 libbabl-0.1.so.0:babl_backtrack
+libbabl-0.1.so.0:babl_base_init
 libbabl-0.1.so.0:babl_base_model_gray
 libbabl-0.1.so.0:babl_base_model_rgb
 libbabl-0.1.so.0:babl_base_model_ycbcr
@@ -89,7 +91,6 @@ libbabl-0.1.so.0:babl_get_version
 libbabl-0.1.so.0:babl_hash_by_int
 libbabl-0.1.so.0:babl_hash_by_str
 libbabl-0.1.so.0:babl_hash_table_init
-libbabl-0.1.so.0:babl_hash_table_insert
 libbabl-0.1.so.0:babl_icc_get_key
 libbabl-0.1.so.0:babl_icc_make_space
 libbabl-0.1.so.0:babl_init
