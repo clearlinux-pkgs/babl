@@ -1,6 +1,5 @@
 libbabl-0.1.so.0:_babl_file_get_contents
 libbabl-0.1.so.0:_babl_fish_create_name
-libbabl-0.1.so.0:_babl_fish_missing_fast_path_warning
 libbabl-0.1.so.0:_babl_fish_path_destroy
 libbabl-0.1.so.0:_babl_fish_prepare_bpp
 libbabl-0.1.so.0:_babl_fish_rig_dispatch
@@ -119,6 +118,7 @@ libbabl-0.1.so.0:babl_palette_set_palette
 libbabl-0.1.so.0:babl_polynomial_approximate_gamma
 libbabl-0.1.so.0:babl_process
 libbabl-0.1.so.0:babl_process_rows
+libbabl-0.1.so.0:babl_reference_mutex
 libbabl-0.1.so.0:babl_rel_avg_error
 libbabl-0.1.so.0:babl_sampling
 libbabl-0.1.so.0:babl_sampling_class_for_each
