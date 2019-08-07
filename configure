@@ -1,1 +1,1 @@
---enable-sse4_1
+-Denable-sse4_1=True -Denable-avx2=True

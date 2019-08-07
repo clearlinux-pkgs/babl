@@ -1,5 +1,5 @@
 PKG_NAME := babl
-URL = https://download.gimp.org/pub/babl/0.1/babl-0.1.66.tar.bz2
+URL = https://download.gimp.org/pub/babl/0.1/babl-0.1.70.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
