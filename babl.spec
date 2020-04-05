@@ -4,7 +4,7 @@
 #
 Name     : babl
 Version  : 0.1.74
-Release  : 35
+Release  : 36
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.74.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.74.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
@@ -13,9 +13,9 @@ License  : GPL-3.0 LGPL-3.0
 Requires: babl-data = %{version}-%{release}
 Requires: babl-lib = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
-BuildRequires : /usr/bin/g-ir-scanner
 BuildRequires : buildreq-meson
 BuildRequires : glibc-bin
+BuildRequires : gobject-introspection-dev
 BuildRequires : lcms2-dev
 BuildRequires : librsvg
 BuildRequires : librsvg-dev
@@ -38,7 +38,6 @@ Group: Development
 Requires: babl-lib = %{version}-%{release}
 Requires: babl-data = %{version}-%{release}
 Provides: babl-devel = %{version}-%{release}
-Requires: babl = %{version}-%{release}
 Requires: babl = %{version}-%{release}
 
 %description dev
@@ -75,22 +74,26 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578928705
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1586066778
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
+export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffast-math -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
+export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffast-math -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffast-math -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Denable-sse4_1=True -Denable-avx2=True  builddir
 ninja -v -C builddir
 CFLAGS="$CFLAGS -m64 -march=haswell" CXXFLAGS="$CXXFLAGS -m64 -march=haswell " LDFLAGS="$LDFLAGS -m64 -march=haswell" meson --libdir=lib64/haswell --prefix=/usr --buildtype=plain -Denable-sse4_1=True -Denable-avx2=True  builddiravx2
 ninja -v -C builddiravx2
-CFLAGS="$CFLAGS -m64 -march=haswell" CXXFLAGS="$CXXFLAGS -m64 -march=haswell " LDFLAGS="$LDFLAGS -m64 -march=haswell" meson --prefix /usr --libdir=/usr/lib64/haswell --buildtype=plain -Denable-sse4_1=True -Denable-avx2=True  builddiravx2
-ninja -v -C builddiravx2
+
+%check
+export LANG=C.UTF-8
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+meson test -C builddir || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/babl

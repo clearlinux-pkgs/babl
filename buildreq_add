@@ -2,5 +2,5 @@
 # picked up automatically. One name per line, no whitespace.
 librsvg
 librsvg-dev
-/usr/bin/g-ir-scanner
 glibc-bin
+gobject-introspection-dev
