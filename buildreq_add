@@ -1,6 +1,7 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-librsvg
-librsvg-dev
 glibc-bin
 gobject-introspection-dev
+librsvg
+librsvg-dev
+vala
