@@ -1,1 +1,3 @@
--Denable-sse4_1=True -Denable-avx2=True
+-Denable-sse4_1=True
+-Denable-avx2=True
+-Dwith-docs=false
