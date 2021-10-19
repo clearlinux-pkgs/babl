@@ -4,7 +4,7 @@
 #
 Name     : babl
 Version  : 0.1.88
-Release  : 45
+Release  : 46
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.88.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.88.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
@@ -86,20 +86,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633736888
+export SOURCE_DATE_EPOCH=1634665083
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Denable-sse4_1=True \
 -Denable-avx2=True \
 -Dwith-docs=false  builddir
 ninja -v -C builddir
-CFLAGS="$CFLAGS -m64 -march=x86-64-v3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Denable-sse4_1=True \
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Denable-sse4_1=True \
 -Denable-avx2=True \
 -Dwith-docs=false  builddiravx2
 ninja -v -C builddiravx2
@@ -117,11 +117,11 @@ cp %{_builddir}/babl-0.1.88/COPYING %{buildroot}/usr/share/package-licenses/babl
 cp %{_builddir}/babl-0.1.88/docs/COPYING %{buildroot}/usr/share/package-licenses/babl/7181028b2cb15912d89c76ca33b720a3bfb537cc
 cp %{_builddir}/babl-0.1.88/docs/COPYING.LESSER %{buildroot}/usr/share/package-licenses/babl/e7d563f52bf5295e6dba1d67ac23e9f6a160fab9
 DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 DESTDIR=%{buildroot} ninja -C builddir install
 ## install_append content
 # mv %{buildroot}/usr/lib/pkgconfig %{buildroot}/usr/lib64
 ## install_append end
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
