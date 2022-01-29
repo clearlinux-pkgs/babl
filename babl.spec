@@ -4,7 +4,7 @@
 #
 Name     : babl
 Version  : 0.1.88
-Release  : 46
+Release  : 47
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.88.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.88.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
