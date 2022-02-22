@@ -1,5 +1,6 @@
 libbabl-0.1.so.0:V0_1_0
 libbabl-0.1.so.0:babl_backtrack
+libbabl-0.1.so.0:babl_chromatic_adaptation_matrix
 libbabl-0.1.so.0:babl_class_name
 libbabl-0.1.so.0:babl_component
 libbabl-0.1.so.0:babl_component_new
@@ -19,6 +20,7 @@ libbabl-0.1.so.0:babl_extension_quiet_log
 libbabl-0.1.so.0:babl_fast_fish
 libbabl-0.1.so.0:babl_fish
 libbabl-0.1.so.0:babl_fish_db
+libbabl-0.1.so.0:babl_fish_get_process
 libbabl-0.1.so.0:babl_fish_path
 libbabl-0.1.so.0:babl_format
 libbabl-0.1.so.0:babl_format_class_for_each
