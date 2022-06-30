@@ -4,14 +4,13 @@
 #
 Name     : babl
 Version  : 0.1.92
-Release  : 50
+Release  : 51
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.92.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.92.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-3.0
 Requires: babl-data = %{version}-%{release}
-Requires: babl-filemap = %{version}-%{release}
 Requires: babl-lib = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
 BuildRequires : buildreq-meson
@@ -23,6 +22,7 @@ BuildRequires : librsvg-dev
 BuildRequires : pkgconfig(lcms2)
 BuildRequires : pkgconfig(vapigen)
 BuildRequires : vala
+Patch1: backport-meson-fix-misspelled-kwarg-name.patch
 
 %description
 No detailed description available
@@ -47,20 +47,11 @@ Requires: babl = %{version}-%{release}
 dev components for the babl package.
 
 
-%package filemap
-Summary: filemap components for the babl package.
-Group: Default
-
-%description filemap
-filemap components for the babl package.
-
-
 %package lib
 Summary: lib components for the babl package.
 Group: Libraries
 Requires: babl-data = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
-Requires: babl-filemap = %{version}-%{release}
 
 %description lib
 lib components for the babl package.
@@ -77,6 +68,7 @@ license components for the babl package.
 %prep
 %setup -q -n babl-0.1.92
 cd %{_builddir}/babl-0.1.92
+%patch1 -p1
 pushd ..
 cp -a babl-0.1.92 buildavx2
 popd
@@ -86,15 +78,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1647984852
+export SOURCE_DATE_EPOCH=1656558261
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mno-vzeroupper -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -mprefer-vector-width=256 "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Denable-sse4_1=True \
 -Denable-avx2=True \
 -Dwith-docs=false  builddir
@@ -121,7 +113,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 ## install_append content
 # mv %{buildroot}/usr/lib/pkgconfig %{buildroot}/usr/lib64
 ## install_append end
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -140,12 +132,9 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/babl-0.1/babl/babl-types.h
 /usr/include/babl-0.1/babl/babl-version.h
 /usr/include/babl-0.1/babl/babl.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so
 /usr/lib64/libbabl-0.1.so
 /usr/lib64/pkgconfig/babl.pc
-
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-babl
 
 %files lib
 %defattr(-,root,root,-)
@@ -202,9 +191,10 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/babl-0.1/x86-64-v3-u32.so
 /usr/lib64/babl-0.1/x86-64-v3-ycbcr.so
 /usr/lib64/babl-0.1/ycbcr.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so.0
+/usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so.0.191.1
 /usr/lib64/libbabl-0.1.so.0
 /usr/lib64/libbabl-0.1.so.0.191.1
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
