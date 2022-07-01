@@ -4,13 +4,14 @@
 #
 Name     : babl
 Version  : 0.1.92
-Release  : 51
+Release  : 52
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.92.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.92.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-3.0
 Requires: babl-data = %{version}-%{release}
+Requires: babl-filemap = %{version}-%{release}
 Requires: babl-lib = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
 BuildRequires : buildreq-meson
@@ -47,11 +48,20 @@ Requires: babl = %{version}-%{release}
 dev components for the babl package.
 
 
+%package filemap
+Summary: filemap components for the babl package.
+Group: Default
+
+%description filemap
+filemap components for the babl package.
+
+
 %package lib
 Summary: lib components for the babl package.
 Group: Libraries
 Requires: babl-data = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
+Requires: babl-filemap = %{version}-%{release}
 
 %description lib
 lib components for the babl package.
@@ -78,7 +88,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656558261
+export SOURCE_DATE_EPOCH=1656700450
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -135,6 +145,10 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so
 /usr/lib64/libbabl-0.1.so
 /usr/lib64/pkgconfig/babl.pc
+
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-babl
 
 %files lib
 %defattr(-,root,root,-)
@@ -195,6 +209,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so.0.191.1
 /usr/lib64/libbabl-0.1.so.0
 /usr/lib64/libbabl-0.1.so.0.191.1
+/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
