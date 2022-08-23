@@ -1,4 +1,4 @@
-0.1.92
+0.1.96
 lcms2-dev
 pkgconfig(lcms2)
 pkgconfig(vapigen)
