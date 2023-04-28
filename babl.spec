@@ -5,7 +5,7 @@
 #
 Name     : babl
 Version  : 0.1.104
-Release  : 64
+Release  : 65
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.104.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.104.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
@@ -13,7 +13,6 @@ Group    : Development/Tools
 License  : GPL-3.0 LGPL-3.0
 Requires: babl-bin = %{version}-%{release}
 Requires: babl-data = %{version}-%{release}
-Requires: babl-filemap = %{version}-%{release}
 Requires: babl-lib = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
 BuildRequires : buildreq-meson
@@ -37,7 +36,6 @@ Summary: bin components for the babl package.
 Group: Binaries
 Requires: babl-data = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
-Requires: babl-filemap = %{version}-%{release}
 
 %description bin
 bin components for the babl package.
@@ -64,20 +62,11 @@ Requires: babl = %{version}-%{release}
 dev components for the babl package.
 
 
-%package filemap
-Summary: filemap components for the babl package.
-Group: Default
-
-%description filemap
-filemap components for the babl package.
-
-
 %package lib
 Summary: lib components for the babl package.
 Group: Libraries
 Requires: babl-data = %{version}-%{release}
 Requires: babl-license = %{version}-%{release}
-Requires: babl-filemap = %{version}-%{release}
 
 %description lib
 lib components for the babl package.
@@ -103,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682086449
+export SOURCE_DATE_EPOCH=1682644921
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -142,11 +131,64 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/bin/babl
+/V3/usr/lib64/babl-0.1/CIE.so
+/V3/usr/lib64/babl-0.1/HCY.so
+/V3/usr/lib64/babl-0.1/HSL.so
+/V3/usr/lib64/babl-0.1/HSV.so
+/V3/usr/lib64/babl-0.1/avx2-int8.so
+/V3/usr/lib64/babl-0.1/cairo.so
+/V3/usr/lib64/babl-0.1/double.so
+/V3/usr/lib64/babl-0.1/fast-float.so
+/V3/usr/lib64/babl-0.1/float.so
+/V3/usr/lib64/babl-0.1/gegl-fixups.so
+/V3/usr/lib64/babl-0.1/gggl-lies.so
+/V3/usr/lib64/babl-0.1/gggl-table-lies.so
+/V3/usr/lib64/babl-0.1/gggl-table.so
+/V3/usr/lib64/babl-0.1/gggl.so
+/V3/usr/lib64/babl-0.1/gimp-8bit.so
+/V3/usr/lib64/babl-0.1/grey.so
+/V3/usr/lib64/babl-0.1/half.so
+/V3/usr/lib64/babl-0.1/naive-CMYK.so
+/V3/usr/lib64/babl-0.1/oklab.so
+/V3/usr/lib64/babl-0.1/simple.so
+/V3/usr/lib64/babl-0.1/sse-half.so
+/V3/usr/lib64/babl-0.1/sse2-float.so
+/V3/usr/lib64/babl-0.1/sse2-int16.so
+/V3/usr/lib64/babl-0.1/sse2-int8.so
+/V3/usr/lib64/babl-0.1/sse4-int8.so
+/V3/usr/lib64/babl-0.1/two-table.so
+/V3/usr/lib64/babl-0.1/u16.so
+/V3/usr/lib64/babl-0.1/u32.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-CIE.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-cairo.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-double.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-float.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-gegl-fixups.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-gggl-lies.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-gggl.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-grey.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-simple.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-u16.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-u32.so
+/V3/usr/lib64/babl-0.1/x86-64-v2-ycbcr.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-CIE.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-cairo.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-double.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-float.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-gegl-fixups.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-gggl-lies.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-gggl.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-grey.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-simple.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-u16.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-u32.so
+/V3/usr/lib64/babl-0.1/x86-64-v3-ycbcr.so
+/V3/usr/lib64/babl-0.1/ycbcr.so
 
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/babl
-/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -165,10 +207,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so
 /usr/lib64/libbabl-0.1.so
 /usr/lib64/pkgconfig/babl-0.1.pc
-
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-babl
 
 %files lib
 %defattr(-,root,root,-)
@@ -229,7 +267,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so.0.203.1
 /usr/lib64/libbabl-0.1.so.0
 /usr/lib64/libbabl-0.1.so.0.203.1
-/usr/share/clear/optimized-elf/other*
 
 %files license
 %defattr(0644,root,root,0755)
