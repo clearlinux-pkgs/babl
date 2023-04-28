@@ -5,7 +5,7 @@
 #
 Name     : babl
 Version  : 0.1.104
-Release  : 65
+Release  : 66
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.104.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.104.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
@@ -92,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682644921
+export SOURCE_DATE_EPOCH=1682701349
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -131,7 +131,32 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
 /V3/usr/bin/babl
+/usr/bin/babl
+
+%files data
+%defattr(-,root,root,-)
+/usr/lib64/girepository-1.0/Babl-0.1.typelib
+/usr/share/gir-1.0/*.gir
+/usr/share/vala/vapi/babl-0.1.deps
+/usr/share/vala/vapi/babl-0.1.vapi
+
+%files dev
+%defattr(-,root,root,-)
+/V3/usr/lib64/libbabl-0.1.so
+/usr/include/babl-0.1/babl/babl-introspect.h
+/usr/include/babl-0.1/babl/babl-macros.h
+/usr/include/babl-0.1/babl/babl-types.h
+/usr/include/babl-0.1/babl/babl-version.h
+/usr/include/babl-0.1/babl/babl.h
+/usr/lib64/libbabl-0.1.so
+/usr/lib64/pkgconfig/babl-0.1.pc
+
+%files lib
+%defattr(-,root,root,-)
 /V3/usr/lib64/babl-0.1/CIE.so
 /V3/usr/lib64/babl-0.1/HCY.so
 /V3/usr/lib64/babl-0.1/HSL.so
@@ -185,31 +210,8 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /V3/usr/lib64/babl-0.1/x86-64-v3-u32.so
 /V3/usr/lib64/babl-0.1/x86-64-v3-ycbcr.so
 /V3/usr/lib64/babl-0.1/ycbcr.so
-
-%files bin
-%defattr(-,root,root,-)
-/usr/bin/babl
-
-%files data
-%defattr(-,root,root,-)
-/usr/lib64/girepository-1.0/Babl-0.1.typelib
-/usr/share/gir-1.0/*.gir
-/usr/share/vala/vapi/babl-0.1.deps
-/usr/share/vala/vapi/babl-0.1.vapi
-
-%files dev
-%defattr(-,root,root,-)
-/usr/include/babl-0.1/babl/babl-introspect.h
-/usr/include/babl-0.1/babl/babl-macros.h
-/usr/include/babl-0.1/babl/babl-types.h
-/usr/include/babl-0.1/babl/babl-version.h
-/usr/include/babl-0.1/babl/babl.h
-/usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so
-/usr/lib64/libbabl-0.1.so
-/usr/lib64/pkgconfig/babl-0.1.pc
-
-%files lib
-%defattr(-,root,root,-)
+/V3/usr/lib64/libbabl-0.1.so.0
+/V3/usr/lib64/libbabl-0.1.so.0.203.1
 /usr/lib64/babl-0.1/CIE.so
 /usr/lib64/babl-0.1/HCY.so
 /usr/lib64/babl-0.1/HSL.so
@@ -263,8 +265,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/babl-0.1/x86-64-v3-u32.so
 /usr/lib64/babl-0.1/x86-64-v3-ycbcr.so
 /usr/lib64/babl-0.1/ycbcr.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libbabl-0.1.so.0.203.1
 /usr/lib64/libbabl-0.1.so.0
 /usr/lib64/libbabl-0.1.so.0.203.1
 
