@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : babl
-Version  : 0.1.104
-Release  : 66
-URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.104.tar.xz
-Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.104.tar.xz
+Version  : 0.1.106
+Release  : 67
+URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.106.tar.xz
+Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.106.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-3.0
@@ -81,10 +81,10 @@ license components for the babl package.
 
 
 %prep
-%setup -q -n babl-0.1.104
-cd %{_builddir}/babl-0.1.104
+%setup -q -n babl-0.1.106
+cd %{_builddir}/babl-0.1.106
 pushd ..
-cp -a babl-0.1.104 buildavx2
+cp -a babl-0.1.106 buildavx2
 popd
 
 %build
@@ -92,15 +92,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682701349
+export SOURCE_DATE_EPOCH=1683296139
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -ftree-loop-vectorize -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Denable-sse4_1=True \
 -Denable-avx2=True \
 -Dwith-docs=false  builddir
@@ -211,7 +211,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /V3/usr/lib64/babl-0.1/x86-64-v3-ycbcr.so
 /V3/usr/lib64/babl-0.1/ycbcr.so
 /V3/usr/lib64/libbabl-0.1.so.0
-/V3/usr/lib64/libbabl-0.1.so.0.203.1
+/V3/usr/lib64/libbabl-0.1.so.0.205.1
 /usr/lib64/babl-0.1/CIE.so
 /usr/lib64/babl-0.1/HCY.so
 /usr/lib64/babl-0.1/HSL.so
@@ -266,7 +266,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/babl-0.1/x86-64-v3-ycbcr.so
 /usr/lib64/babl-0.1/ycbcr.so
 /usr/lib64/libbabl-0.1.so.0
-/usr/lib64/libbabl-0.1.so.0.203.1
+/usr/lib64/libbabl-0.1.so.0.205.1
 
 %files license
 %defattr(0644,root,root,0755)
