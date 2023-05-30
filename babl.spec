@@ -5,7 +5,7 @@
 #
 Name     : babl
 Version  : 0.1.106
-Release  : 67
+Release  : 68
 URL      : https://download.gimp.org/pub/babl/0.1/babl-0.1.106.tar.xz
 Source0  : https://download.gimp.org/pub/babl/0.1/babl-0.1.106.tar.xz
 Summary  : Dynamic, any to any, pixel format conversion library
@@ -92,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683296139
+export SOURCE_DATE_EPOCH=1685481413
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -146,7 +146,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libbabl-0.1.so
 /usr/include/babl-0.1/babl/babl-introspect.h
 /usr/include/babl-0.1/babl/babl-macros.h
 /usr/include/babl-0.1/babl/babl-types.h
@@ -210,7 +209,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /V3/usr/lib64/babl-0.1/x86-64-v3-u32.so
 /V3/usr/lib64/babl-0.1/x86-64-v3-ycbcr.so
 /V3/usr/lib64/babl-0.1/ycbcr.so
-/V3/usr/lib64/libbabl-0.1.so.0
 /V3/usr/lib64/libbabl-0.1.so.0.205.1
 /usr/lib64/babl-0.1/CIE.so
 /usr/lib64/babl-0.1/HCY.so
